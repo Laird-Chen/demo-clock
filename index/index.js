@@ -13,6 +13,7 @@ Page({
     y: 0,
     r: 0,
     fontsize: 14,
+    tm: null,
     s: null,
     m: null,
     h: null,
@@ -56,6 +57,7 @@ Page({
     let tm = new Date()
     if (this.s !== tm.getSeconds()) {
       console.log(tm.toLocaleTimeString())
+      this.tm = tm
       this.s = tm.getSeconds()
       this.m = tm.getMinutes()
       this.h = tm.getHours()
@@ -92,14 +94,6 @@ Page({
     // ctx.fill()
     ctx.stroke()
     ctx.closePath()
-    
-    // ctx.beginPath()
-    // ctx.arc(0, 0, this.r - 5, 0, Math.PI * 2)
-    // ctx.fillStyle = "white"
-    // ctx.strokeStyle = 'white'
-    // ctx.fill()
-    // ctx.stroke()
-    // ctx.closePath()
 
     //画秒刻度
     ctx.restore()
@@ -137,10 +131,13 @@ Page({
     }
 
     //写日期
-    let txt = this.mon + '月' + this.day + '日'
-    radia = 90 * Math.PI / 180
-    ctx.fillStyle="gray"
-    ctx.strokeText(txt, 0, -40, 40)
+    let txt = (this.tm.getMonth() + 1) + '月' + this.tm.getDate() + '日'
+    ctx.strokeText(txt, 0, -this.r * 0.45)
+
+    //写星期几
+    const week = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六']
+    txt = week[this.tm.getDay()]
+    ctx.strokeText(txt, 0, -this.r * 0.36)
   },
 
   drawSecondHand(ctx) {
