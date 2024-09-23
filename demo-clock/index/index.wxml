@@ -1,6 +1,0 @@
-<!--clock/index.wxml-->
-<canvas
-  type="2d"
-  id="canvas"
-  style="width: {{canvas.w}}px; height: {{canvas.h}}px; border: 1rpx solid #ccc; box-sizing: border-box;"
-></canvas>
